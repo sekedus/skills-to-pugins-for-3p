@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills → Plugins Converter for Claude Desktop 3P</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="badge">⚡ Claude Desktop 3P</div>
+    <h1>Skills → Plugins Converter</h1>
+    <p>Convert <a href="https://agentskills.io/specification" target="_blank">Agent Skills</a> to <a href="https://claude.com/docs/cowork/3p/extensions#plugin-structure" target="_blank">Claude Desktop 3P Plugins</a></p>
+  </header>
+
+  <!-- Upload -->
+  <div class="card">
+    <h2><span class="icon">📂</span> Upload Skills</h2>
+    <div id="dropZone">
+      <div class="icon-big">📤</div>
+      <p><strong>Drag & drop</strong> a skill zip file here, or <strong>click to browse</strong></p>
+      <p class="hint">Accepts <code>.zip</code> files containing 1 or many skill directories with <code>SKILL.md</code> files</p>
+      <input type="file" id="fileInput" accept=".zip">
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="convertBtn" disabled>🔄 Convert to Plugins</button>
+      <button class="btn btn-outline btn-sm" id="loadSampleBtn">📥 Load sample data</button>
+      <button class="btn btn-outline btn-sm no_items" id="resetBtn">🗑️ Reset</button>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="error-banner" id="errorBanner"></div>
+
+  <!-- Progress -->
+  <div class="card" id="progressArea">
+    <h2><span class="icon">⏳</span> <span id="progressLabel">Processing...</span></h2>
+    <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- Results -->
+  <div class="card" id="results">
+    <h2><span class="icon">📋</span> Validation &amp; Conversion Results</h2>
+    <div class="summary" id="summaryArea"></div>
+    <div id="resultsList"></div>
+
+    <!-- Download -->
+    <div id="downloadArea">
+      <button class="btn btn-success" id="downloadAllBtn">⬇️ Download All as Plugin Zip</button>
+      <button class="btn btn-outline" id="downloadIndividualBtn">⬇️ Download Individual</button>
+      <span id="downloadInfo" class="download-info"></span>
+    </div>
+  </div>
+
+  <!-- Log -->
+  <div class="card no_items" id="logCard">
+    <h2><span class="icon">📜</span> Log <button class="btn btn-outline btn-sm ml-auto" id="clearLogBtn">Clear</button></h2>
+    <div id="log"></div>
+  </div>
+
+  <footer>
+    <a href="https://agentskills.io/specification" target="_blank">Skills Specification</a> &nbsp;·&nbsp;
+    <a href="https://claude.com/docs/cowork/3p/extensions" target="_blank">Claude Desktop 3P Extensions Docs</a>
+  </footer>
+</div>
+
+</body>
+</html>

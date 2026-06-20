@@ -1,0 +1,77 @@
+name: Convert Skills to Plugins
+
+on:
+  schedule:
+    # Run daily at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # Allow manual trigger with optional force flag
+    inputs:
+      force:
+        description: 'Force re-conversion of all plugins'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      - name: Check Node availability
+        run: node --version
+
+      - name: Run sync script
+        id: sync
+        run: node scripts/sync-plugins.js
+        env:
+          FORCE: ${{ inputs.force || '' }}
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain plugins/)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in plugins/ directory"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add plugins/
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          CHANGED=$(git diff --cached --name-only plugins/ | head -20)
+          git commit -m "🤖 sync: auto-update skills to plugins at $(date +'%Y-%m-%d')
+
+          Automated sync from upstream skill repositories.
+          Timestamp: ${TIMESTAMP}
+
+          Changed plugins:
+          ${CHANGED}
+
+          Triggered by: ${{ github.event_name }}"
+          git push
+
+      - name: Sync completed
+        run: |
+          echo "✅ Sync completed successfully"
+          echo "Has changes: ${{ steps.check_changes.outputs.has_changes }}"

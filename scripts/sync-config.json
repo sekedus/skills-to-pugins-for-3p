@@ -1,0 +1,85 @@
+{
+  "outputDir": "../plugins",
+  "tempDir": "../.tmp-sync",
+  "version": "1.0.0",
+  "sources": [
+    {
+      "author": "anthropics",
+      "repo": "skills",
+      "branch": "main",
+      "skills": [
+        {
+          "directory": "skills",
+          "names": [
+            "algorithmic-art",
+            "brand-guidelines",
+            "canvas-design",
+            "claude-api",
+            "doc-coauthoring",
+            "docx",
+            "frontend-design",
+            "internal-comms",
+            "mcp-builder",
+            "pdf",
+            "pptx",
+            "skill-creator",
+            "slack-gif-creator",
+            "theme-factory",
+            "web-artifacts-builder",
+            "webapp-testing",
+            "xlsx"
+          ]
+        }
+      ]
+    },
+    {
+      "author": "mattpocock",
+      "repo": "skills",
+      "branch": "main",
+      "skills": [
+        {
+          "directory": "skills/productivity",
+          "names": [
+            "grill-me",
+            "grilling",
+            "handoff",
+            "teach",
+            "writing-great-skills"
+          ]
+        },
+        {
+          "directory": "skills/engineering",
+          "names": [
+            "ask-matt",
+            "codebase-design",
+            "diagnosing-bugs",
+            "domain-modeling",
+            "grill-with-docs",
+            "implement",
+            "improve-codebase-architecture",
+            "prototype",
+            "resolving-merge-conflicts",
+            "setup-matt-pocock-skills",
+            "tdd",
+            "to-issues",
+            "to-prd",
+            "triage"
+          ]
+        }
+      ]
+    },
+    {
+      "author": "multica-ai",
+      "repo": "andrej-karpathy-skills",
+      "branch": "main",
+      "skills": [
+        {
+          "directory": "skills",
+          "names": [
+            "karpathy-guidelines"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# OS files
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+node_modules/
+.tmp-sync/

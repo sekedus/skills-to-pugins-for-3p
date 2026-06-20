@@ -1,0 +1,12 @@
+{
+  "name": "converter-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node index.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "jszip": "^3.10.1"
+  }
+}
