@@ -1,0 +1,8 @@
+{
+  "id": "claude-api",
+  "name": "claude-api",
+  "description": "|-",
+  "author": {
+    "name": "anthropics"
+  }
+}

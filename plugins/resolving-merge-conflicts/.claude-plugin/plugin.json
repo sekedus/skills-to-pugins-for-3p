@@ -1,0 +1,8 @@
+{
+  "id": "resolving-merge-conflicts",
+  "name": "resolving-merge-conflicts",
+  "description": "Use when you need to resolve an in-progress git merge/rebase conflict.",
+  "author": {
+    "name": "mattpocock"
+  }
+}
